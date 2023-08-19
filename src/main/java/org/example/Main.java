@@ -20,11 +20,11 @@ public class Main {
         customers.add(customer4);
         customers.add(customer5);
 
-        Room room1 = new Room("Sala nr 1", "1", 50, 45, false);
-        Room room2 = new Room("Sala nr 2", "2", 100, 200, false);
-        Room room3 = new Room("Sala nr 3", "3", 30, 35, false);
-        Room room4 = new Room("Sala nr 4", "4", 100, 200, false);
-        Room room5 = new Room("Sala nr 5", "5", 25, 25, false);
+        Room room1 = new Room("Sala nr 1", "1", 50, 45);
+        Room room2 = new Room("Sala nr 2", "2", 100, 200);
+        Room room3 = new Room("Sala nr 3", "3", 30, 35);
+        Room room4 = new Room("Sala nr 4", "4", 100, 200);
+        Room room5 = new Room("Sala nr 5", "5", 25, 25);
 
         rooms.add(room1);
         rooms.add(room2);
