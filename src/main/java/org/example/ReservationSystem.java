@@ -31,7 +31,7 @@ public class ReservationSystem {
         }
     }
 
-    public void rentRoom(String nameRoom, String name, String surname) {
+    public void rentRoom(String nameRoom, Customer customer) {
         Room room = null;
         for (Room r : rooms) {
             if (r.getNameRoom().equals(nameRoom)) {
