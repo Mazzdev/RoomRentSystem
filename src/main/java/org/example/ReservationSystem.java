@@ -41,7 +41,7 @@ public class ReservationSystem {
         }
 
         if (room != null) {
-            room.rent(name + " " + surname);
+            room.rent(customer);
         } else {
             System.out.println("Brak sali o podanej nazwie!");
         }

@@ -6,7 +6,7 @@ public class Room {
     private final double price;
     private final double area;
     private  boolean isRented;
-    private String borrower;
+    private Customer customer;
 
     public Room(String nameRoom, String address, double price, double area) {
         this.nameRoom = nameRoom;
@@ -14,7 +14,7 @@ public class Room {
         this.price = price;
         this.area = area;
         this.isRented = false;
-        this.borrower = null;
+        this.customer = null;
     }
 
     public String getNameRoom() {
@@ -38,15 +38,15 @@ public class Room {
         return area;
     }
 
-    public String getBorrower() {
-        return borrower;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void rent(String personName){
+    public void rent(Customer customer){
         if(!isRented){
             isRented = true;
-            borrower = personName;
-            System.out.println("Sala została wypożyczona dla: " + personName);
+            customer = customer;
+            System.out.println("Sala została wypożyczona dla: " + customer);
         } else {
             System.out.println("Sala jest już wypożyczona.");
         }
@@ -55,7 +55,7 @@ public class Room {
     public void give(){
         if(isRented){
             isRented = false;
-            borrower= null;
+            customer= null;
             System.out.println("Sala została zwolniona");
         }else {
             System.out.println("Sala nie jest wypożyczona.");
