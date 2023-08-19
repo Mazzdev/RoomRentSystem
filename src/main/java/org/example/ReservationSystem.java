@@ -8,12 +8,13 @@ public class ReservationSystem {
     private List<Customer> customers;
     private List<Room> rooms;
 
-    public ReservationSystem(List<Customer> customers) {
+    public ReservationSystem(List<Customer> customers, List<Room> rooms) {
         this.customers = customers;
+        this.rooms = rooms;
     }
 
 
-    public void addRoom(String name, String address, double price,double area) {
+    public void addRoom(String name, String address, double price, double area) {
         Room room = new Room(name, address, price, area);
         rooms.add(room);
     }

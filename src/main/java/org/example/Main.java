@@ -5,8 +5,11 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
+
+
         ArrayList<Customer> customers = new ArrayList<>();
         ArrayList<Room> rooms = new ArrayList<>();
+        ReservationSystem reservationSystem = new ReservationSystem(customers, rooms);
 
         Customer customer1 = new Customer("Adam", "Kowalski");
         Customer customer2 = new Customer("Michał", "Patec");
@@ -31,5 +34,9 @@ public class Main {
         rooms.add(room3);
         rooms.add(room4);
         rooms.add(room5);
+
+        reservationSystem.displayAllRooms();
+
+
     }
 }
