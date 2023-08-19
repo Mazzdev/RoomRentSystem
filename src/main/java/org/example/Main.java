@@ -36,6 +36,52 @@ public class Main {
         rooms.add(room5);
 
         reservationSystem.displayAllRooms();
+        System.out.println();
+        reservationSystem.displayAllCustomers();
+
+        System.out.println();
+
+        System.out.println("Dodanie klienta:");
+        reservationSystem.addCustomer("Marek", "Wiatr");
+        reservationSystem.displayAllCustomers();
+
+        System.out.println();
+
+        System.out.println("Dodanie sali: ");
+        reservationSystem.addRoom("Sala nr 6", "6", 125, 50);
+        reservationSystem.displayAllRooms();
+
+        System.out.println();
+
+        System.out.println("Usunięcie Klienta: ");
+        reservationSystem.removeCustomer("Maks", "Okoń");
+        reservationSystem.removeCustomer("Stefan", "Witczak");
+        reservationSystem.displayAllCustomers();
+
+        System.out.println();
+
+        System.out.println("Usunięcie Sali: ");
+        reservationSystem.removeRoom("Sala nr 2");
+        reservationSystem.removeRoom("Sala nr 26");
+        reservationSystem.displayAllRooms();
+
+        System.out.println();
+
+        System.out.println("Wynajęcie sali: ");
+        reservationSystem.rentRoom("Sala nr 5", customer1);
+        reservationSystem.rentRoom("Sala nr 5", customer2);
+        reservationSystem.rentRoom("Sala nr 23", customer1);
+        reservationSystem.displayAllRooms();
+
+        System.out.println();
+
+        System.out.println("Zwrócenie sali:");
+        reservationSystem.returnRoom("Sala nr 5");
+        reservationSystem.returnRoom("Sala nr 5");
+        reservationSystem.returnRoom("Sala nr 26");
+        reservationSystem.displayAllRooms();
+
+
 
 
     }

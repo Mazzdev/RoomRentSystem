@@ -21,14 +21,22 @@ public class ReservationSystem {
 
     public void removeRoom(String name) {
         Room roomToRemove = null;
+        boolean check = false;
         for (Room room : rooms) {
             if (room.getNameRoom().equals(name)) {
                 roomToRemove = room;
+                check = true;
                 break;
             }
         }
         if (roomToRemove != null) {
             rooms.remove(roomToRemove);
+        }
+
+        if(check){
+            System.out.println("Sala została usunięta");
+        }else{
+            System.out.println("Nie ma takiej sali!");
         }
     }
 
@@ -71,5 +79,37 @@ public class ReservationSystem {
         }
     }
 
+    public void addCustomer(String name, String surname) {
+        Customer customer = new Customer(name, surname);
+        customers.add(customer);
+    }
 
+    public void removeCustomer(String name, String surname) {
+        Customer customerToRemove = null;
+        boolean check = false;
+        for (Customer customer : customers) {
+            if (customer.getName().equals(name) && customer.getSurname().equals(surname)) {
+                customerToRemove = customer;
+                check = true;
+                break;
+            }
+        }
+
+        if (customerToRemove != null) {
+            customers.remove(customerToRemove);
+        }
+
+        if(check){
+            System.out.println("Klient został usunięty z listy.");
+        }else {
+            System.out.println("Nie ma takiego klienta na liście!");
+        }
+    }
+
+    public void displayAllCustomers() {
+        System.out.println("Lista klientów: ");
+        for (Customer customer : customers) {
+            System.out.println("Imię: " + customer.getName() + ", Nazwisko: " + customer.getSurname());
+        }
+    }
 }
