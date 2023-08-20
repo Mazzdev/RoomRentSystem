@@ -38,12 +38,6 @@ public class ReservationSystem {
         }
 
         return check;
-
-        if(check){
-            System.out.println("Sala została usunięta");
-        }else{
-            System.out.println("Nie ma takiej sali!");
-        }
     }
 
     public void rentRoom(String nameRoom, Customer customer) {
