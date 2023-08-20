@@ -18,64 +18,33 @@ public class ReservationSystem {
     }
 
 
-    public void addRoom(String name, String address, double price, double area) {
-        Room room = new Room(name, address, price, area);
+    public void addRoom(String roomName, String address, double price, double area, boolean rented) {
+        Room room = new Room(roomName, address, price, area, rented);
         rooms.add(room);
     }
 
-    public boolean removeRoom(String name) {
-        Room roomToRemove = null;
-        boolean check = false;
-        for (Room room : rooms) {
-            if (room.getRoomName().equals(name)) {
-                roomToRemove = room;
-                check = true;
-                break;
-            }
-        }
-        if (roomToRemove != null) {
-            rooms.remove(roomToRemove);
-        }
-
-        return check;
+    public void removeRoom(Room room) {
+        rooms.remove(room);
     }
 
-    public void rentRoom(String nameRoom, Customer customer) {
-        Room room = null;
-        for (Room r : rooms) {
-            if (r.getRoomName().equals(nameRoom)) {
-                room = r;
-                break;
-            }
-        }
+    public void rentRoom(Customer customer, Room room, int numberOfHours) {
 
-        if (room != null) {
-            room.rent(customer);
-        } else {
-            System.out.println("Brak sali o podanej nazwie!");
+        if(!room.isRented()){
+            room.setRented(true);
+            reservations.add(new Reservation(customer, room, numberOfHours));
+        }
+//
+    }
+
+//
+
+    public void returnRoom(Room room) {
+        if(room.isRented()){
+            room.setRented(false);
         }
     }
 
-    public void returnRoom(String nameRoom) {
-        Room room = null;
-        for (Room r : rooms) {
-            if (r.getRoomName().equals(nameRoom)) {
-                room = r;
-                break;
-            }
-        }
 
-        if (room != null) {
-            room.give();
-        } else {
-            System.out.println("Nie ma sali o podanej nazwie.");
-        }
-
-    }
-
-    public void addReservetionToHistory(Customer customer, Room room, int numberOfHours){
-        reservations.add(new Reservation(customer, room, numberOfHours));
-    }
 
 
 }

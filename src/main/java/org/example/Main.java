@@ -109,12 +109,8 @@ public class Main {
     }
 
     //Metody wyświetlające komunikaty"
-    public static void removeRoomInformation(boolean check) {
-        if (check) {
-            System.out.println("Sala została usunięta");
-        } else {
-            System.out.println("Nie ma takiej sali!");
-        }
+    public static void removeRoomInformation() {
+
 
     }
 
