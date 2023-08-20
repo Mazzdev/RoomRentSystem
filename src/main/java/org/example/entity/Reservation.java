@@ -14,10 +14,12 @@ public class Reservation {
         this.numberOfHours = numberOfHours;
     }
 
+
     public double totalPrice() {
         if (this.numberOfHours == 12) {
             return (this.room.getPricePerHour() * this.numberOfHours) * 0.8;
         }
         return this.room.getPricePerHour() * this.numberOfHours;
     }
+
 }

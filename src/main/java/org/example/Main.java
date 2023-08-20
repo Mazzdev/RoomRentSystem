@@ -5,15 +5,19 @@ import org.example.services.*;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        Main main = new Main();
 
 
         ArrayList<Customer> customers = new ArrayList<>();
         ArrayList<Room> rooms = new ArrayList<>();
+
         ReservationSystem reservationSystem = new ReservationSystem(customers, rooms);
         CustomerService customerService = new CustomerService();
+        RoomService roomService = new RoomService();
 
         Customer customer1 = new Customer("Adam", "Kowalski");
         Customer customer2 = new Customer("Michał", "Patec");
@@ -39,52 +43,79 @@ public class Main {
         rooms.add(room4);
         rooms.add(room5);
 
-        reservationSystem.displayAllRooms();
+        displayAllRooms(rooms);
         System.out.println();
-        reservationSystem.displayAllCustomers();
+        displayAllCustomers(customers);
 
         System.out.println();
 
         System.out.println("Dodanie klienta:");
         customerService.addCustomer("Marek", "Wiatr");
-        reservationSystem.displayAllCustomers();
+        displayAllCustomers(customers);
 
         System.out.println();
 
         System.out.println("Dodanie sali: ");
         reservationSystem.addRoom("Sala nr 6", "6", 125, 50);
-        reservationSystem.displayAllRooms();
+        displayAllRooms(rooms);
 
         System.out.println();
 
         System.out.println("Usunięcie Klienta: ");
         customerService.removeCustomer("Maks", "Okoń");
         customerService.removeCustomer("Stefan", "Witczak");
-        reservationSystem.displayAllCustomers();
+        displayAllCustomers(customers);
 
         System.out.println();
 
         System.out.println("Usunięcie Sali: ");
         reservationSystem.removeRoom("Sala nr 2");
+        remove
         reservationSystem.removeRoom("Sala nr 26");
-        reservationSystem.displayAllRooms();
+        displayAllRooms(rooms);
 
         System.out.println();
 
         System.out.println("Wynajęcie sali: ");
-        reservationSystem.rentRoom("Sala nr 5", customer1);
-        reservationSystem.rentRoom("Sala nr 5", customer2);
-        reservationSystem.rentRoom("Sala nr 23", customer1);
-        reservationSystem.displayAllRooms();
+        roomService.rentRoom("Sala nr 5", customer1);
+        roomService.rentRoom("Sala nr 5", customer2);
+        roomService.rentRoom("Sala nr 23", customer1);
+        displayAllRooms(rooms);
 
         System.out.println();
 
         System.out.println("Zwrócenie sali:");
-        reservationSystem.returnRoom("Sala nr 5");
-        reservationSystem.returnRoom("Sala nr 5");
-        reservationSystem.returnRoom("Sala nr 26");
-        reservationSystem.displayAllRooms();
+        roomService.returnRoom("Sala nr 5");
+        roomService.returnRoom("Sala nr 5");
+        roomService.returnRoom("Sala nr 26");
+        displayAllRooms(rooms);
 
 
     }
+
+    public void displayAllRooms(List<Room> rooms) {
+        System.out.println("Dostępne sale: ");
+        for (Room room : rooms) {
+            System.out.println(room);
+        }
+    }
+
+
+    public void displayAllCustomers(List<Customer> customers) {
+        System.out.println("Lista klientów: ");
+        for (Customer customer : customers) {
+            System.out.println("Imię: " + customer.name() + ", Nazwisko: " + customer.surname());
+        }
+    }
+
+    //Metody wyświetlające komunikaty"
+    public void removeRoomInformation(boolean check) {
+        if (check) {
+            System.out.println("Sala została usunięta");
+        } else {
+            System.out.println("Nie ma takiej sali!");
+        }
+
+    }
+
 }
