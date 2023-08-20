@@ -4,17 +4,14 @@ import org.example.entity.Customer;
 import org.example.entity.Reservation;
 import org.example.entity.Room;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationSystem {
-
-    private List<Customer> customers;
-    private List<Room> rooms;
     private List<Reservation> reservations;
 
-    public ReservationSystem(List<Customer> customers, List<Room> rooms) {
-        this.customers = customers;
-        this.rooms = rooms;
+    public ReservationSystem() {
+        reservations= new ArrayList<>();
     }
 
 
@@ -22,19 +19,14 @@ public class ReservationSystem {
 
     public void rentRoom(Customer customer, Room room, int numberOfHours) {
 
-        if(!room.isRented()){
-            room.setRented(true);
-            reservations.add(new Reservation(customer, room, numberOfHours));
-        }
+
 
     }
 
 
 
     public void returnRoom(Room room) {
-        if(room.isRented()){
-            room.setRented(false);
-        }
+
     }
 
 

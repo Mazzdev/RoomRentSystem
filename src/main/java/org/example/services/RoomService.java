@@ -9,7 +9,7 @@ import java.util.List;
 public class RoomService {
     private List<Room> rooms;
 
-    public RoomService(List<Room> rooms) {
+    public RoomService() {
         this.rooms = new ArrayList<>();
     }
 
