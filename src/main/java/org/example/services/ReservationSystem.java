@@ -25,7 +25,7 @@ public class ReservationSystem {
         Room roomToRemove = null;
         boolean check = false;
         for (Room room : rooms) {
-            if (room.getNameRoom().equals(name)) {
+            if (room.getRoomName().equals(name)) {
                 roomToRemove = room;
                 check = true;
                 break;
@@ -45,7 +45,7 @@ public class ReservationSystem {
     public void rentRoom(String nameRoom, Customer customer) {
         Room room = null;
         for (Room r : rooms) {
-            if (r.getNameRoom().equals(nameRoom)) {
+            if (r.getRoomName().equals(nameRoom)) {
                 room = r;
                 break;
             }
@@ -61,7 +61,7 @@ public class ReservationSystem {
     public void returnRoom(String nameRoom) {
         Room room = null;
         for (Room r : rooms) {
-            if (r.getNameRoom().equals(nameRoom)) {
+            if (r.getRoomName().equals(nameRoom)) {
                 room = r;
                 break;
             }
