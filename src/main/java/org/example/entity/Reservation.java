@@ -17,9 +17,9 @@ public class Reservation {
 
     public double totalPrice() {
         if (this.numberOfHours == 12) {
-            return (this.room.getPricePerHour() * this.numberOfHours) * 0.8;
+            return (this.room.pricePerHour() * this.numberOfHours) * 0.8;
         }
-        return this.room.getPricePerHour() * this.numberOfHours;
+        return this.room.pricePerHour() * this.numberOfHours;
     }
 
 }
