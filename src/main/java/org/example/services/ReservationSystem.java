@@ -1,10 +1,9 @@
-package org.example;
+package org.example.services;
 
 import org.example.entity.Customer;
 import org.example.entity.Room;
 
 import java.util.List;
-import java.util.Map;
 
 public class ReservationSystem {
 
@@ -87,7 +86,7 @@ public class ReservationSystem {
     public void displayAllCustomers() {
         System.out.println("Lista klientów: ");
         for (Customer customer : customers) {
-            System.out.println("Imię: " + customer.getName() + ", Nazwisko: " + customer.getSurname());
+            System.out.println("Imię: " + customer.name() + ", Nazwisko: " + customer.surname());
         }
     }
 }

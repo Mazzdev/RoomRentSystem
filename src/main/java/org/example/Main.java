@@ -1,9 +1,7 @@
 package org.example;
 
-import org.example.entity.Customer;
-import org.example.entity.Room;
-import org.example.services.CustomerService;
-import org.example.ReservationSystem;
+import org.example.entity.*;
+import org.example.services.*;
 
 
 import java.util.ArrayList;
@@ -14,7 +12,7 @@ public class Main {
 
         ArrayList<Customer> customers = new ArrayList<>();
         ArrayList<Room> rooms = new ArrayList<>();
-        org.example.ReservationSystem reservationSystem = new ReservationSystem(customers, rooms);
+        ReservationSystem reservationSystem = new ReservationSystem(customers, rooms);
         CustomerService customerService = new CustomerService();
 
         Customer customer1 = new Customer("Adam", "Kowalski");

@@ -1,7 +1,6 @@
 package org.example.entity;
 
-import org.example.entity.Customer;
-import org.example.entity.Reservation;
+
 
 import java.util.ArrayList;
 import java.util.List;
