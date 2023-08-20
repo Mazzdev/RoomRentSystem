@@ -18,14 +18,7 @@ public class ReservationSystem {
     }
 
 
-    public void addRoom(String roomName, String address, double price, double area, boolean rented) {
-        Room room = new Room(roomName, address, price, area, rented);
-        rooms.add(room);
-    }
 
-    public void removeRoom(Room room) {
-        rooms.remove(room);
-    }
 
     public void rentRoom(Customer customer, Room room, int numberOfHours) {
 
@@ -33,10 +26,10 @@ public class ReservationSystem {
             room.setRented(true);
             reservations.add(new Reservation(customer, room, numberOfHours));
         }
-//
+
     }
 
-//
+
 
     public void returnRoom(Room room) {
         if(room.isRented()){
