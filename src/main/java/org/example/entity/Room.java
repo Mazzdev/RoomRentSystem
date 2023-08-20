@@ -7,12 +7,12 @@ public class Room {
     private double area;
     private boolean rented;
 
-    public Room(String roomName, String address, double pricePerHours, double area, boolean rented) {
+    public Room(String roomName, String address, double pricePerHours, double area) {
         this.roomName = roomName;
         this.address = address;
         this.pricePerHours = pricePerHours;
         this.area = area;
-        this.rented = rented;
+        this.rented = false;
     }
 
     public String getRoomName() {
