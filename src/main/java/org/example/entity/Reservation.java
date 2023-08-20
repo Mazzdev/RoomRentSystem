@@ -11,7 +11,7 @@ public class Reservation {
         this.numberOfHours = numberOfHours;
     }
 
-    //liczenie ceny za wynajem
+
 
 
 }
