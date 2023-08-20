@@ -1,15 +1,6 @@
 package org.example;
 
-import java.util.List;
-
-public class Customer {
-    private final String name;
-    private final String surname;
-
-    public Customer(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
-    }
+public record Customer(String name, String surname) {
 
     @Override
     public String toString() {
@@ -17,13 +8,5 @@ public class Customer {
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 '}';
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
     }
 }

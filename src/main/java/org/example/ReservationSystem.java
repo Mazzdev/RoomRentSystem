@@ -1,7 +1,6 @@
 package org.example;
 
 import java.util.List;
-import java.util.Map;
 
 public class ReservationSystem {
 
@@ -88,7 +87,7 @@ public class ReservationSystem {
         Customer customerToRemove = null;
         boolean check = false;
         for (Customer customer : customers) {
-            if (customer.getName().equals(name) && customer.getSurname().equals(surname)) {
+            if (customer.name().equals(name) && customer.surname().equals(surname)) {
                 customerToRemove = customer;
                 check = true;
                 break;
@@ -109,7 +108,7 @@ public class ReservationSystem {
     public void displayAllCustomers() {
         System.out.println("Lista klientów: ");
         for (Customer customer : customers) {
-            System.out.println("Imię: " + customer.getName() + ", Nazwisko: " + customer.getSurname());
+            System.out.println("Imię: " + customer.name() + ", Nazwisko: " + customer.surname());
         }
     }
 }
