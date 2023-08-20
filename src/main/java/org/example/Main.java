@@ -85,7 +85,7 @@ public class Main {
         System.out.println();
 
         System.out.println("Zwrócenie sali:");
-        removeRoomInformation(roomService.returnRoom("Sala nr 5"));
+
         roomService.returnRoom("Sala nr 5");
         roomService.returnRoom("Sala nr 26");
         displayAllRooms(rooms);
