@@ -1,6 +1,10 @@
 package org.example;
 
-import java.lang.reflect.Array;
+import org.example.entity.Customer;
+import org.example.entity.Room;
+import org.example.services.CustomerService;
+import org.example.services.ReservationSystem;
+
 import java.util.ArrayList;
 
 public class Main {
@@ -10,6 +14,7 @@ public class Main {
         ArrayList<Customer> customers = new ArrayList<>();
         ArrayList<Room> rooms = new ArrayList<>();
         ReservationSystem reservationSystem = new ReservationSystem(customers, rooms);
+        CustomerService customerService = new CustomerService();
 
         Customer customer1 = new Customer("Adam", "Kowalski");
         Customer customer2 = new Customer("Michał", "Patec");
@@ -42,7 +47,7 @@ public class Main {
         System.out.println();
 
         System.out.println("Dodanie klienta:");
-        reservationSystem.addCustomer("Marek", "Wiatr");
+        customerService.addCustomer("Marek", "Wiatr");
         reservationSystem.displayAllCustomers();
 
         System.out.println();
@@ -54,8 +59,8 @@ public class Main {
         System.out.println();
 
         System.out.println("Usunięcie Klienta: ");
-        reservationSystem.removeCustomer("Maks", "Okoń");
-        reservationSystem.removeCustomer("Stefan", "Witczak");
+        customerService.removeCustomer("Maks", "Okoń");
+        customerService.removeCustomer("Stefan", "Witczak");
         reservationSystem.displayAllCustomers();
 
         System.out.println();
@@ -80,8 +85,6 @@ public class Main {
         reservationSystem.returnRoom("Sala nr 5");
         reservationSystem.returnRoom("Sala nr 26");
         reservationSystem.displayAllRooms();
-
-
 
 
     }

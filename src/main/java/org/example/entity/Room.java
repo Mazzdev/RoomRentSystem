@@ -1,30 +1,38 @@
-package org.example;
+package org.example.entity;
+
+import org.example.entity.Customer;
+import org.example.entity.Reservation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Room {
     private final String nameRoom;
     private final String address;
-    private final double price;
+    private final double pricePerHour;
     private final double area;
-    private  boolean isRented;
+    private boolean isRented;
     private Customer customer;
+    private List<Reservation>  reservations;
 
-    public Room(String nameRoom, String address, double price, double area) {
+    public Room(String nameRoom, String address, double pricePerHour, double area) {
         this.nameRoom = nameRoom;
         this.address = address;
-        this.price = price;
+        this.pricePerHour = pricePerHour;
         this.area = area;
         this.isRented = false;
         this.customer = null;
+        this.reservations = new ArrayList<>();
     }
 
     public String getNameRoom() {
         return nameRoom;
     }
 
-    public double getPrice() {
-        return price;
-    }
 
+    public double getPricePerHour() {
+        return pricePerHour;
+    }
 
     public String getAddress() {
         return address;
@@ -42,8 +50,8 @@ public class Room {
         return customer;
     }
 
-    public void rent(Customer customer){
-        if(!isRented){
+    public void rent(Customer customer) {
+        if (!isRented) {
             isRented = true;
             customer = customer;
             System.out.println("Sala została wypożyczona dla: " + customer);
@@ -52,12 +60,12 @@ public class Room {
         }
     }
 
-    public void give(){
-        if(isRented){
+    public void give() {
+        if (isRented) {
             isRented = false;
-            customer= null;
+            customer = null;
             System.out.println("Sala została zwolniona");
-        }else {
+        } else {
             System.out.println("Sala nie jest wypożyczona.");
         }
     }
@@ -67,7 +75,7 @@ public class Room {
         return "Room{" +
                 "nameRoom='" + nameRoom + '\'' +
                 ", address='" + address + '\'' +
-                ", price=" + price +
+                ", price=" + pricePerHour +
                 ", area=" + area +
                 ", isRented=" + isRented +
                 ", customer=" + customer +
