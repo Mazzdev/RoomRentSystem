@@ -15,6 +15,17 @@ public class Room {
         this.rented = false;
     }
 
+    @Override
+    public String toString() {
+        return "Room{" +
+                "roomName='" + roomName + '\'' +
+                ", address='" + address + '\'' +
+                ", pricePerHours=" + pricePerHours +
+                ", area=" + area +
+                ", rented=" + rented +
+                '}';
+    }
+
     public String getRoomName() {
         return roomName;
     }
