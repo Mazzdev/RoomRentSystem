@@ -15,9 +15,7 @@ public class Main {
         ArrayList<Customer> customers = new ArrayList<>();
         ArrayList<Room> rooms = new ArrayList<>();
 
-        ReservationSystem reservationSystem = new ReservationSystem(customers, rooms);
-        CustomerService customerService = new CustomerService();
-        RoomService roomService = new RoomService();
+
 
         Customer customer1 = new Customer("Adam", "Kowalski");
         Customer customer2 = new Customer("Michał", "Patec");
@@ -43,6 +41,10 @@ public class Main {
         rooms.add(room4);
         rooms.add(room5);
 
+        ReservationSystem reservationSystem = new ReservationSystem(customers, rooms);
+        CustomerService customerService = new CustomerService();
+        RoomService roomService = new RoomService(rooms);
+
         displayAllRooms(rooms);
         System.out.println();
         displayAllCustomers(customers);
@@ -56,7 +58,7 @@ public class Main {
         System.out.println();
 
         System.out.println("Dodanie sali: ");
-        reservationSystem.addRoom("Sala nr 6", "6", 125, 50);
+        roomService.addRoom("Sala6", "Sala nr 7", 130, 25);
         displayAllRooms(rooms);
 
         System.out.println();
@@ -69,25 +71,24 @@ public class Main {
         System.out.println();
 
         System.out.println("Usunięcie Sali: ");
-        reservationSystem.removeRoom("Sala nr 2");
-        remove
-        reservationSystem.removeRoom("Sala nr 26");
+        roomService.removeRoom(room1);
+        roomService.removeRoom(room5);
         displayAllRooms(rooms);
 
         System.out.println();
 
         System.out.println("Wynajęcie sali: ");
-        roomService.rentRoom("Sala nr 5", customer1);
-        roomService.rentRoom("Sala nr 5", customer2);
-        roomService.rentRoom("Sala nr 23", customer1);
+        reservationSystem.rentRoom(customer1, room2, 30);
+        reservationSystem.rentRoom(customer2, room3, 130);
+        reservationSystem.rentRoom(customer3, room4, 230);
         displayAllRooms(rooms);
 
         System.out.println();
 
         System.out.println("Zwrócenie sali:");
 
-        roomService.returnRoom("Sala nr 5");
-        roomService.returnRoom("Sala nr 26");
+        reservationSystem.returnRoom(room2);
+        reservationSystem.returnRoom(room4);
         displayAllRooms(rooms);
 
 

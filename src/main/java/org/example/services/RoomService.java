@@ -13,5 +13,14 @@ public class RoomService {
         this.rooms = new ArrayList<>();
     }
 
+    public void addRoom(String roomName, String address, double price, double area) {
+        Room room = new Room(roomName, address, price, area);
+        rooms.add(room);
+    }
+
+    public void removeRoom(Room room) {
+        rooms.remove(room);
+    }
+
 
 }
