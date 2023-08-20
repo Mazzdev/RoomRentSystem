@@ -27,7 +27,7 @@ public class ReservationSystem {
         Room roomToRemove = null;
         boolean check = false;
         for (Room room : rooms) {
-            if (room.getNameRoom().equals(name)) {
+            if (room.getRoomName().equals(name)) {
                 roomToRemove = room;
                 check = true;
                 break;
@@ -38,6 +38,45 @@ public class ReservationSystem {
         }
 
         return check;
+
+        if(check){
+            System.out.println("Sala została usunięta");
+        }else{
+            System.out.println("Nie ma takiej sali!");
+        }
+    }
+
+    public void rentRoom(String nameRoom, Customer customer) {
+        Room room = null;
+        for (Room r : rooms) {
+            if (r.getRoomName().equals(nameRoom)) {
+                room = r;
+                break;
+            }
+        }
+
+        if (room != null) {
+            room.rent(customer);
+        } else {
+            System.out.println("Brak sali o podanej nazwie!");
+        }
+    }
+
+    public void returnRoom(String nameRoom) {
+        Room room = null;
+        for (Room r : rooms) {
+            if (r.getRoomName().equals(nameRoom)) {
+                room = r;
+                break;
+            }
+        }
+
+        if (room != null) {
+            room.give();
+        } else {
+            System.out.println("Nie ma sali o podanej nazwie.");
+        }
+
     }
 
     public void addReservetionToHistory(Customer customer, Room room, int numberOfHours){

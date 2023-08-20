@@ -1,21 +1,18 @@
 package org.example.entity;
 
-
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class Room {
-    private final String nameRoom;
+    private final String roomName;
     private final String address;
     private final double pricePerHour;
     private final double area;
     private boolean isRented;
     private Customer customer;
-    private List<Reservation>  reservations;
+    private ArrayList<Reservation> reservations;
 
-    public Room(String nameRoom, String address, double pricePerHour, double area) {
-        this.nameRoom = nameRoom;
+    public Room(String roomName, String address, double pricePerHour, double area) {
+        this.roomName = roomName;
         this.address = address;
         this.pricePerHour = pricePerHour;
         this.area = area;
@@ -24,8 +21,8 @@ public class Room {
         this.reservations = new ArrayList<>();
     }
 
-    public String getNameRoom() {
-        return nameRoom;
+    public String getRoomName() {
+        return roomName;
     }
 
 
@@ -49,35 +46,22 @@ public class Room {
         return customer;
     }
 
-    public void rent(Customer customer) {
+    public boolean rent(Customer customer) {
         if (!isRented) {
             isRented = true;
-            customer = customer;
-            System.out.println("Sala została wypożyczona dla: " + customer);
-        } else {
-            System.out.println("Sala jest już wypożyczona.");
+            this.customer = customer;
+
+            return true;
         }
+        return false;
     }
 
-    public void give() {
+    public boolean give() {
         if (isRented) {
             isRented = false;
-            customer = null;
-            System.out.println("Sala została zwolniona");
-        } else {
-            System.out.println("Sala nie jest wypożyczona.");
+            this.customer = null;
+            return true;
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Room{" +
-                "nameRoom='" + nameRoom + '\'' +
-                ", address='" + address + '\'' +
-                ", price=" + pricePerHour +
-                ", area=" + area +
-                ", isRented=" + isRented +
-                ", customer=" + customer +
-                '}';
+        return false;
     }
 }
