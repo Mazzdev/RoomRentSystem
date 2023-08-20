@@ -85,7 +85,7 @@ public class Main {
         System.out.println();
 
         System.out.println("Zwrócenie sali:");
-        roomService.returnRoom("Sala nr 5");
+        removeRoomInformation(roomService.returnRoom("Sala nr 5"));
         roomService.returnRoom("Sala nr 5");
         roomService.returnRoom("Sala nr 26");
         displayAllRooms(rooms);
@@ -93,7 +93,7 @@ public class Main {
 
     }
 
-    public void displayAllRooms(List<Room> rooms) {
+    public static void displayAllRooms(List<Room> rooms) {
         System.out.println("Dostępne sale: ");
         for (Room room : rooms) {
             System.out.println(room);
@@ -101,7 +101,7 @@ public class Main {
     }
 
 
-    public void displayAllCustomers(List<Customer> customers) {
+    public static void displayAllCustomers(List<Customer> customers) {
         System.out.println("Lista klientów: ");
         for (Customer customer : customers) {
             System.out.println("Imię: " + customer.name() + ", Nazwisko: " + customer.surname());
@@ -109,7 +109,7 @@ public class Main {
     }
 
     //Metody wyświetlające komunikaty"
-    public void removeRoomInformation(boolean check) {
+    public static void removeRoomInformation(boolean check) {
         if (check) {
             System.out.println("Sala została usunięta");
         } else {
