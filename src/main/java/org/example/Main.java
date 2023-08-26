@@ -4,16 +4,15 @@ import org.example.entity.*;
 import org.example.services.*;
 
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        ArrayList<Customer> customers = new ArrayList<>();
-        ArrayList<Room> rooms = new ArrayList<>();
 
-        ReservationService reservationSystem = new ReservationService();
+        ReservationService reservationService = new ReservationService();
         CustomerService customerService = new CustomerService();
         RoomService roomService = new RoomService();
         Scanner scanner = new Scanner(System.in);
@@ -26,6 +25,8 @@ public class Main {
         String address;
         String name;
         String surname;
+        String startDate;
+        String endDate;
         double pricePerHour;
         double area;
 
@@ -169,17 +170,38 @@ public class Main {
                     switch (choice) {
                         case 1:
                             System.out.println("\n--- LISTA REZERWACJI --- \n");
-
+                            displayAllReservations(reservationService);
 
                             break;
 
                         case 2:
                             System.out.println("\n--- REZERWACJA SALI ---\n");
+                            System.out.print("\nPodaj imię i nazwisko klienta, który  rezerwuje salę: ");
+                            name = scanner.nextLine();
+                            surname = scanner.nextLine();
+                            Customer clientRentingTheRoom = customerService.findCustomerByName(name, surname);
+
+                            System.out.print("\nPodaj nazwę rezerwowanej sali: ");
+                            roomName = scanner.nextLine();
+                            Room roomRented = roomService.findRoomByName(roomName);
+
+                            System.out.print("\nRezerwacja od(data i godzina): ");
+                            startDate = scanner.nextLine();
+
+                            System.out.print("\nRezerwacja do(data i godzina): ");
+                            endDate = scanner.nextLine();
+
+                            reservationService.rentRoom(clientRentingTheRoom, roomRented, startDate, endDate);
 
                             break;
 
                         case 3:
                             System.out.println("\n--- ZWRACANIE SALI --- \n");
+                            System.out.print("\nPodaj nazwę zwracanej sali sali: ");
+                            roomName = scanner.nextLine();
+                            Room roomReturned = roomService.findRoomByName(roomName);
+
+                            reservationService.returnRoom(roomReturned);
 
                             break;
                         case 0:
@@ -308,6 +330,16 @@ public class Main {
         System.out.println();
     }
 
+
+    private static void displayAllReservations(ReservationService reservationService) {
+        System.out.println("All Reservations:");
+        for (Reservation reservation : reservationService.getReservations()) {
+            System.out.println("Customer: " + reservation.getCustomer().name() +
+                    ", Room: " + reservation.getRoom().roomName() +
+                    ", Start Time: " + reservation.getStartTime() +
+                    ", End Time: " + reservation.getEndTime());
+        }
+    }
 
     public static void createRooms(RoomService roomService) {
         roomService.addRoom("Room 101", "1", 120, 80);
