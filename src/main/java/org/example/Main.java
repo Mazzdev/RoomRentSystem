@@ -4,9 +4,7 @@ import org.example.entity.*;
 import org.example.services.*;
 
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -163,14 +161,18 @@ public class Main {
 
                     switch (choice) {
                         case 1:
+                            System.out.println("\n--- LISTA REZERWACJI --- \n");
+
 
                             break;
 
                         case 2:
+                            System.out.println("\n--- REZERWACJA SALI ---\n");
 
                             break;
 
                         case 3:
+                            System.out.println("\n--- ZWRACANIE SALI --- \n");
 
                             break;
                         case 0:
