@@ -22,5 +22,16 @@ public class RoomService {
         rooms.remove(room);
     }
 
+    public Room findRoomByName(String name) {
+        for (Room room : rooms) {
+            if (room.roomName().equals(name)) {
+                return room;
+            }
+        }
+        return null;
+    }
 
+    public List<Room> getRooms() {
+        return rooms;
+    }
 }

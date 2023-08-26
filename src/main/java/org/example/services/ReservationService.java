@@ -7,10 +7,10 @@ import org.example.entity.Room;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservationSystem {
+public class ReservationService {
     private List<Reservation> reservations;
 
-    public ReservationSystem() {
+    public ReservationService() {
         reservations= new ArrayList<>();
     }
 
