@@ -22,6 +22,10 @@ public class Main {
         createRooms(roomService);
         createReservations(reservationService, roomService, customerService);
 
+        Room room1 = roomService.findRoomByName("Room 101");
+        Customer customer1 = customerService.findCustomerById(1);
+        reservationService.rentRoom(customer1, room1, "2023-08-26 15:00", "2023-08-26 17:00");
+
         int choiceOne;
         int choiceTwo;
         int choiceThree;
@@ -303,7 +307,8 @@ public class Main {
                     ", Sala: " + reservation.getRoom().roomName() +
                     ", Od: " + reservation.getStartTime() +
                     ", Do: " + reservation.getEndTime() +
-                    ", Czas: " + reservation.getNumberOfHours());
+                    ", Czas: " + reservation.getNumberOfHours() +
+                    ", Cena za wynajem: " + reservation.totalPrice());
         }
     }
 
@@ -326,7 +331,7 @@ public class Main {
     }
 
     public static void createReservations(ReservationService reservationService, RoomService roomService, CustomerService customerService) {
-        Room room1 = roomService.findRoomByName("101");
+        Room room1 = roomService.findRoomByName("Room 101");
         Customer customer1 = customerService.findCustomerById(1);
         reservationService.rentRoom(customer1, room1, "2023-08-26 15:00", "2023-08-26 17:00");
 
