@@ -48,11 +48,15 @@ public class Main {
             switch (choice) {
                 case 1:
 
+
                     System.out.println("--- ZARZĄDZANIE SALAMI ---");
                     System.out.println("1. Dodaj Salę.");
                     System.out.println("2. Usuń Salę.");
                     System.out.println("3. Wyświetl listę wszystkich sal.");
                     System.out.println("0. Powrót.");
+
+      
+
 
                     System.out.print("\nWybrana opcja: ");
                     choice = scanner.nextInt();
@@ -93,7 +97,9 @@ public class Main {
                             break;
                         case 0:
 
+
                             break;
+
 
                         default:
                             printDefaultInformation();
@@ -119,6 +125,7 @@ public class Main {
                             name = scanner.nextLine();
                             System.out.print("\nPodaj nazwisko: ");
                             surname = scanner.nextLine();
+
 
                             customerService.addCustomer(name, surname);
                             break;
@@ -269,6 +276,8 @@ public class Main {
 //
 //        reservationSystem.returnRoom(room2);
 //        reservationSystem.returnRoom(room4);
+
+
 
 
     }

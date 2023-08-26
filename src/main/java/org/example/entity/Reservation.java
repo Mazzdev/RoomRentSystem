@@ -1,25 +1,63 @@
 package org.example.entity;
 
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+
 public class Reservation {
     private final Customer customer;
     private final Room room;
-    private int numberOfHours;
+    private final LocalTime startTime;
+    private final LocalTime endTime;
 
-    public Reservation(Customer customer, Room room, int numberOfHours) {
+    private static final LocalTime MIN_BOOKING_TIME = LocalTime.of(10, 0);
+    private static final LocalTime MAX_BOOKING_TIME = LocalTime.of(22, 0);
+
+
+    public Reservation(Customer customer, Room room, LocalTime startTime, LocalTime endTime) {
         this.customer = customer;
         this.room = room;
-        if (numberOfHours > 12) {
-            throw new IllegalArgumentException();
+
+        if (endTime.isBefore(startTime)) {
+            throw new IllegalArgumentException("End time cannot be earlier than start time.");
         }
-        this.numberOfHours = numberOfHours;
+
+        if (startTime.isBefore(MIN_BOOKING_TIME) || endTime.isAfter(MAX_BOOKING_TIME)) {
+            throw new IllegalArgumentException("Booking hours are between 10:00 and 22:00.");
+        }
+
+        this.startTime = startTime;
+        this.endTime = endTime;
+
+        if (getNumberOfHours() > 12) {
+            throw new IllegalArgumentException("Reservation duration cannot exceed 12 hours.");
+        }
     }
 
 
     public double totalPrice() {
-        if (this.numberOfHours == 12) {
-            return (this.room.pricePerHour() * this.numberOfHours) * 0.8;
+        if (this.getNumberOfHours() == 12) {
+            return (this.room.pricePerHour() * this.getNumberOfHours()) * 0.8;
         }
-        return this.room.pricePerHour() * this.numberOfHours;
+        return this.room.pricePerHour() * this.getNumberOfHours();
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public long getNumberOfHours() {
+        return ChronoUnit.HOURS.between(startTime, endTime);
+    }
 }
