@@ -22,8 +22,6 @@ public class ReservationService {
         if (isRoomAvailable(room, startDateTime)) {
             Reservation reservation = new Reservation(customer, room, startDateTime, endDateTime);
             reservations.add(reservation);
-        } else {
-            throw new IllegalArgumentException("The room is already booked during the specified time.");
         }
     }
 
