@@ -18,7 +18,7 @@ public class CustomerService {
     }
 
     public void removeCustomer(Customer customer) {
-        customer.remove(customer);
+        customers.remove(customer);
     }
 
     public Customer findCustomerByName(String firstName, String lastName) {
