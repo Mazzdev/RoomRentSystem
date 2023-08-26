@@ -20,17 +20,21 @@ public class Main {
 
         createCustomers(customerService);
         createRooms(roomService);
+        createReservations(reservationService, roomService, customerService);
 
         int choiceOne;
         int choiceTwo;
         int choiceThree;
         int choiceMain;
+        int id;
+
         String roomName;
         String address;
         String name;
         String surname;
         String startDate;
         String endDate;
+
         double pricePerHour;
         double area;
 
@@ -146,15 +150,15 @@ public class Main {
                             case 2:
                                 scanner.nextLine();
 
-                                System.out.println("\n--- USUWANIE KLIENTÓW ---\n");
-                                System.out.print("Podaj imię: ");
-                                name = scanner.nextLine();
+
+                                System.out.println("\n--- USUWANIE KLIENTÓW ---");
+                                System.out.print("Podaj ID klienta:");
+                                id = scanner.nextInt();
+
+
                                 scanner.nextLine();
 
-                                System.out.print("\nPodaj nazwisko: ");
-                                surname = scanner.nextLine();
-
-                                Customer customerToRemove = customerService.findCustomerByName(name, surname);
+                                Customer customerToRemove = customerService.findCustomerById(id);
                                 if (customerToRemove != null) {
                                     customerService.removeCustomer(customerToRemove);
                                     System.out.println("Klient usunięty pomyślnie");
@@ -168,7 +172,7 @@ public class Main {
                                 break;
 
                             case 0:
-                                System.out.println("\n--- POWRÓT DO POPRZEDNIEJ SEKCJI ---\n");
+                                System.out.println("\n--- POWRÓT DO POPRZEDNIEJ SEKCJI ---");
 
                                 break;
 
@@ -195,7 +199,7 @@ public class Main {
 
                         switch (choiceThree) {
                             case 1:
-                                System.out.println("\n--- LISTA REZERWACJI --- \n");
+                                System.out.println("\n--- LISTA REZERWACJI ---");
                                 displayAllReservations(reservationService);
 
                                 break;
@@ -203,21 +207,23 @@ public class Main {
                             case 2:
                                 scanner.nextLine();
 
-                                System.out.println("\n--- REZERWACJA SALI ---\n");
-                                System.out.print("\nPodaj imię klienta, który  rezerwuje salę: ");
-                                name = scanner.nextLine();
-                                System.out.print("\nPodaj nazwisko klienta, który  rezerwuje salę: ");
-                                surname = scanner.nextLine();
-                                Customer clientRentingTheRoom = customerService.findCustomerByName(name, surname);
+
+                                System.out.println("\n--- REZERWACJA SALI ---");
+                                System.out.print("Podaj id klienta, który  rezerwuje salę: ");
+                                id = scanner.nextInt();
+
+                                scanner.nextLine();
+                                Customer clientRentingTheRoom = customerService.findCustomerById(id);
+
 
                                 System.out.print("\nPodaj nazwę rezerwowanej sali: ");
                                 roomName = scanner.nextLine();
                                 Room roomRented = roomService.findRoomByName(roomName);
 
-                                System.out.print("\nRezerwacja od(data i godzina): ");
+                                System.out.print("\nRezerwacja od(format: yyyy-MM-dd HH:mm): ");
                                 startDate = scanner.nextLine();
 
-                                System.out.print("\nRezerwacja do(data i godzina): ");
+                                System.out.print("\nRezerwacja do(format: yyyy-MM-dd HH:mm): ");
                                 endDate = scanner.nextLine();
 
                                 reservationService.rentRoom(clientRentingTheRoom, roomRented, startDate, endDate);
@@ -227,8 +233,8 @@ public class Main {
                             case 3:
                                 scanner.nextLine();
 
-                                System.out.println("\n--- ZWRACANIE SALI --- \n");
-                                System.out.print("\nPodaj nazwę zwracanej sali sali: ");
+                                System.out.println("\n--- ZWRACANIE SALI ---");
+                                System.out.print("Podaj nazwę zwracanej sali sali: ");
                                 roomName = scanner.nextLine();
                                 Room roomReturned = roomService.findRoomByName(roomName);
 
@@ -236,7 +242,7 @@ public class Main {
 
                                 break;
                             case 0:
-                                System.out.println("\n--- POWRÓT DO POPRZEDNIEJ SEKCJI ---\n");
+                                System.out.println("\n--- POWRÓT DO POPRZEDNIEJ SEKCJI ---");
 
                                 break;
 
@@ -282,23 +288,22 @@ public class Main {
 
 
     public static void displayAllCustomers(CustomerService customerService) {
-        int counter = 1;
         System.out.println("Lista klientów: ");
         for (Customer customer : customerService.getCustomers()) {
-            System.out.println(counter + ". Imię: " + customer.name() + ", Nazwisko: " + customer.surname());
-            counter++;
+            System.out.println("Id: " + customer.id() + ", Imię: " + customer.name() + ", Nazwisko: " + customer.surname());
         }
         System.out.println();
     }
 
 
     private static void displayAllReservations(ReservationService reservationService) {
-        System.out.println("All Reservations:");
+        System.out.println("Lista Rezerwacji:");
         for (Reservation reservation : reservationService.getReservations()) {
-            System.out.println("Customer: " + reservation.getCustomer().name() +
-                    ", Room: " + reservation.getRoom().roomName() +
-                    ", Start Time: " + reservation.getStartTime() +
-                    ", End Time: " + reservation.getEndTime());
+            System.out.println("Klient: " + reservation.getCustomer().name() +
+                    ", Sala: " + reservation.getRoom().roomName() +
+                    ", Od: " + reservation.getStartTime() +
+                    ", Do: " + reservation.getEndTime() +
+                    ", Czas: " + reservation.getNumberOfHours());
         }
     }
 
@@ -320,15 +325,16 @@ public class Main {
 
     }
 
+    public static void createReservations(ReservationService reservationService, RoomService roomService, CustomerService customerService) {
+        Room room1 = roomService.findRoomByName("101");
+        Customer customer1 = customerService.findCustomerById(1);
+        reservationService.rentRoom(customer1, room1, "2023-08-26 15:00", "2023-08-26 17:00");
+
+    }
+
     public static void printDefaultInformation() {
         System.out.println("Nie ma takiej opcji! Wybierz jeszcze raz");
     }
 
-
-    //Metody wyświetlające komunikaty"
-    public static void removeRoomInformation() {
-
-
-    }
 
 }
