@@ -19,7 +19,7 @@ public class ReservationService {
         LocalDateTime startDateTime = LocalDateTime.parse(startDateTimeString, formatter);
         LocalDateTime endDateTime = LocalDateTime.parse(endDateTimeString, formatter);
 
-        if (isRoomAvailable(room, startDateTime, endDateTime)) {
+        if (isRoomAvailable(room, startDateTime)) {
             Reservation reservation = new Reservation(customer, room, startDateTime, endDateTime);
             reservations.add(reservation);
         } else {
@@ -31,7 +31,7 @@ public class ReservationService {
         reservations.removeIf(reservation -> reservation.getRoom().equals(room));
     }
 
-    private boolean isRoomAvailable(Room room, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+    private boolean isRoomAvailable(Room room, LocalDateTime startDateTime) {
         for (Reservation existingReservation : reservations) {
             if (existingReservation.getRoom().equals(room)) {
                 if (startDateTime.isBefore(existingReservation.getEndTime())) {
