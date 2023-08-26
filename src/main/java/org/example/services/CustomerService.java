@@ -17,25 +17,20 @@ public class CustomerService {
         customers.add(customer);
     }
 
-    public void removeCustomer(String name, String surname) {
-        Customer customerToRemove = null;
-        boolean check = false;
+    public void removeCustomer(Customer customer) {
+        customers.remove(customer);
+    }
+
+    public Customer findCustomerByName(String firstName, String lastName) {
         for (Customer customer : customers) {
-            if (customer.name().equals(name) && customer.surname().equals(surname)) {
-                customerToRemove = customer;
-                check = true;
-                break;
+            if (customer.name().equals(firstName + " " + lastName)) {
+                return customer;
             }
         }
+        return null;
+    }
 
-        if (customerToRemove != null) {
-            customers.remove(customerToRemove);
-        }
-
-        if(check){
-            System.out.println("Klient został usunięty z listy.");
-        }else {
-            System.out.println("Nie ma takiego klienta na liście!");
-        }
+    public List<Customer> getCustomers() {
+        return customers;
     }
 }
