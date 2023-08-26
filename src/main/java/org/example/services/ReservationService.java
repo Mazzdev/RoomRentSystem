@@ -40,4 +40,8 @@ public class ReservationService {
         }
         return true;
     }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
 }
