@@ -4,8 +4,8 @@ import org.example.entity.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.time.LocalTime;
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ReservationService {
     private List<Reservation> reservations;
@@ -14,12 +14,13 @@ public class ReservationService {
         reservations = new ArrayList<>();
     }
 
-    public void rentRoom(Customer customer, Room room, String startTime, String endTime) {
-        LocalTime parsedStartTime = LocalTime.parse(startTime);
-        LocalTime parsedEndTime = LocalTime.parse(endTime);
+    public void rentRoom(Customer customer, Room room, String startDateTimeString, String endDateTimeString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime startDateTime = LocalDateTime.parse(startDateTimeString, formatter);
+        LocalDateTime endDateTime = LocalDateTime.parse(endDateTimeString, formatter);
 
-        if (isRoomAvailable(room, parsedStartTime, parsedEndTime)) {
-            Reservation reservation = new Reservation(customer, room, parsedStartTime, parsedEndTime);
+        if (isRoomAvailable(room, startDateTime, endDateTime)) {
+            Reservation reservation = new Reservation(customer, room, startDateTime, endDateTime);
             reservations.add(reservation);
         } else {
             throw new IllegalArgumentException("The room is already booked during the specified time.");
@@ -30,10 +31,10 @@ public class ReservationService {
         reservations.removeIf(reservation -> reservation.getRoom().equals(room));
     }
 
-    private boolean isRoomAvailable(Room room, LocalTime startTime, LocalTime endTime) {
+    private boolean isRoomAvailable(Room room, LocalDateTime startDateTime, LocalDateTime endDateTime) {
         for (Reservation existingReservation : reservations) {
             if (existingReservation.getRoom().equals(room)) {
-                if (startTime.isBefore(existingReservation.getEndTime())) {
+                if (startDateTime.isBefore(existingReservation.getEndTime())) {
                     return false;
                 }
             }

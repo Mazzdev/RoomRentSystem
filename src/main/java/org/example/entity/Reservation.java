@@ -1,19 +1,19 @@
 package org.example.entity;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
 public class Reservation {
     private final Customer customer;
     private final Room room;
-    private final LocalTime startTime;
-    private final LocalTime endTime;
+    private final LocalDateTime startTime;
+    private final LocalDateTime endTime;
 
     private static final LocalTime MIN_BOOKING_TIME = LocalTime.of(10, 0);
     private static final LocalTime MAX_BOOKING_TIME = LocalTime.of(22, 0);
 
-
-    public Reservation(Customer customer, Room room, LocalTime startTime, LocalTime endTime) {
+    public Reservation(Customer customer, Room room, LocalDateTime startTime, LocalDateTime endTime) {
         this.customer = customer;
         this.room = room;
 
@@ -21,7 +21,7 @@ public class Reservation {
             throw new IllegalArgumentException("End time cannot be earlier than start time.");
         }
 
-        if (startTime.isBefore(MIN_BOOKING_TIME) || endTime.isAfter(MAX_BOOKING_TIME)) {
+        if (startTime.toLocalTime().isBefore(MIN_BOOKING_TIME) || endTime.toLocalTime().isAfter(MAX_BOOKING_TIME)) {
             throw new IllegalArgumentException("Booking hours are between 10:00 and 22:00.");
         }
 
@@ -32,7 +32,6 @@ public class Reservation {
             throw new IllegalArgumentException("Reservation duration cannot exceed 12 hours.");
         }
     }
-
 
     public double totalPrice() {
         if (this.getNumberOfHours() == 12) {
@@ -49,11 +48,11 @@ public class Reservation {
         return room;
     }
 
-    public LocalTime getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public LocalTime getEndTime() {
+    public LocalDateTime getEndTime() {
         return endTime;
     }
 
