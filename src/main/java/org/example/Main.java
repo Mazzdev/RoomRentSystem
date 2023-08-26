@@ -41,9 +41,9 @@ public class Main {
         rooms.add(room4);
         rooms.add(room5);
 
-        ReservationSystem reservationSystem = new ReservationSystem(customers, rooms);
+        ReservationService reservationService = new ReservationService();
         CustomerService customerService = new CustomerService();
-        RoomService roomService = new RoomService(rooms);
+        RoomService roomService = new RoomService();
 
         displayAllRooms(rooms);
         System.out.println();
@@ -78,17 +78,17 @@ public class Main {
         System.out.println();
 
         System.out.println("Wynajęcie sali: ");
-        reservationSystem.rentRoom(customer1, room2, 30);
-        reservationSystem.rentRoom(customer2, room3, 130);
-        reservationSystem.rentRoom(customer3, room4, 230);
+        reservationService.rentRoom(customer1, room2, 30);
+        reservationService.rentRoom(customer2, room3, 130);
+        reservationService.rentRoom(customer3, room4, 230);
         displayAllRooms(rooms);
 
         System.out.println();
 
         System.out.println("Zwrócenie sali:");
 
-        reservationSystem.returnRoom(room2);
-        reservationSystem.returnRoom(room4);
+        reservationService.returnRoom(room2);
+        reservationService.returnRoom(room4);
         displayAllRooms(rooms);
 
 
