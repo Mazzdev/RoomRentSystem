@@ -22,9 +22,7 @@ public class Main {
         createRooms(roomService);
         createReservations(reservationService, roomService, customerService);
 
-        Room room1 = roomService.findRoomByName("Room 101");
-        Customer customer1 = customerService.findCustomerById(1);
-        reservationService.rentRoom(customer1, room1, "2023-08-26 15:00", "2023-08-26 17:00");
+
 
         int choiceOne;
         int choiceTwo;
