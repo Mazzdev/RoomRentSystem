@@ -1,11 +1,12 @@
 package org.example;
 
-import org.example.entity.*;
-import org.example.services.*;
+import org.example.entity.Customer;
+import org.example.entity.Reservation;
+import org.example.entity.Room;
+import org.example.services.CustomerService;
+import org.example.services.ReservationService;
+import org.example.services.RoomService;
 
-
-import java.sql.SQLOutput;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -87,7 +88,7 @@ public class Main {
 
                                 System.out.println("\n--- Usuwanie Sali ---\n");
 
-                                System.out.print("Podaj nazwę sali do usunięcia");
+                                System.out.print("Podaj nazwę sali do usunięcia: ");
                                 roomName = scanner.nextLine();
                                 Room roomToRemove = roomService.findRoomByName(roomName);
 
@@ -108,7 +109,6 @@ public class Main {
                                 printDefaultInformation();
                                 break;
                         }
-
 
 
                     } while (choiceOne != 0);
@@ -149,12 +149,17 @@ public class Main {
                                 System.out.println("\n--- USUWANIE KLIENTÓW ---\n");
                                 System.out.print("Podaj imię: ");
                                 name = scanner.nextLine();
+                                scanner.nextLine();
+
                                 System.out.print("\nPodaj nazwisko: ");
                                 surname = scanner.nextLine();
 
                                 Customer customerToRemove = customerService.findCustomerByName(name, surname);
                                 if (customerToRemove != null) {
                                     customerService.removeCustomer(customerToRemove);
+                                    System.out.println("Klient usunięty pomyślnie");
+                                } else {
+                                    System.out.println("Klient nie znaleziony!");
                                 }
                                 break;
 
@@ -199,8 +204,9 @@ public class Main {
                                 scanner.nextLine();
 
                                 System.out.println("\n--- REZERWACJA SALI ---\n");
-                                System.out.print("\nPodaj imię i nazwisko klienta, który  rezerwuje salę: ");
+                                System.out.print("\nPodaj imię klienta, który  rezerwuje salę: ");
                                 name = scanner.nextLine();
+                                System.out.print("\nPodaj nazwisko klienta, który  rezerwuje salę: ");
                                 surname = scanner.nextLine();
                                 Customer clientRentingTheRoom = customerService.findCustomerByName(name, surname);
 
@@ -240,8 +246,6 @@ public class Main {
                         }
 
 
-
-
                     } while (choiceThree != 0);
 
                     break;
@@ -259,77 +263,6 @@ public class Main {
 
             }
         } while (choiceMain != 0);
-
-
-//        Customer customer1 = new Customer("Adam", "Kowalski");
-//        Customer customer2 = new Customer("Michał", "Patec");
-//        Customer customer3 = new Customer("Maks", "Okoń");
-//        Customer customer4 = new Customer("Paweł", "Ryba");
-//        Customer customer5 = new Customer("Damian", "Wilk");
-//
-//        customers.add(customer1);
-//        customers.add(customer2);
-//        customers.add(customer3);
-//        customers.add(customer4);
-//        customers.add(customer5);
-//
-//        Room room1 = new Room("Sala nr 1", "1", 50, 45);
-//        Room room2 = new Room("Sala nr 2", "2", 100, 200);
-//        Room room3 = new Room("Sala nr 3", "3", 30, 35);
-//        Room room4 = new Room("Sala nr 4", "4", 100, 200);
-//        Room room5 = new Room("Sala nr 5", "5", 25, 25);
-//
-//        rooms.add(room1);
-//        rooms.add(room2);
-//        rooms.add(room3);
-//        rooms.add(room4);
-//        rooms.add(room5);
-//
-//
-//
-//        System.out.println();
-//
-//
-//        System.out.println();
-//
-//        System.out.println("Dodanie klienta:");
-//        customerService.addCustomer("Marek", "Wiatr");
-//
-//
-//        System.out.println();
-//
-//        System.out.println("Dodanie sali: ");
-//        roomService.addRoom("Sala6", "Sala nr 7", 130, 25);
-//
-//
-//        System.out.println();
-//
-//        System.out.println("Usunięcie Klienta: ");
-//        customerService.removeCustomer("Maks", "Okoń");
-//        customerService.removeCustomer("Stefan", "Witczak");
-//
-//
-//        System.out.println();
-//
-//        System.out.println("Usunięcie Sali: ");
-//        roomService.removeRoom(room1);
-//        roomService.removeRoom(room5);
-//
-//
-//        System.out.println();
-//
-//        System.out.println("Wynajęcie sali: ");
-//        reservationSystem.rentRoom(customer1, room2, 30);
-//        reservationSystem.rentRoom(customer2, room3, 130);
-//        reservationSystem.rentRoom(customer3, room4, 230);
-//
-//
-//        System.out.println();
-//
-//        System.out.println("Zwrócenie sali:");
-//
-//        reservationSystem.returnRoom(room2);
-//        reservationSystem.returnRoom(room4);
 
 
     }
