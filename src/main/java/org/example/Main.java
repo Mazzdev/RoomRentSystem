@@ -23,7 +23,6 @@ public class Main {
         createReservations(reservationService, roomService, customerService);
 
 
-
         int choiceOne;
         int choiceTwo;
         int choiceThree;
@@ -100,6 +99,9 @@ public class Main {
 
                                 if (roomToRemove != null) {
                                     roomService.removeRoom(roomToRemove);
+                                    System.out.println("Sala usunięta");
+                                } else {
+                                    System.out.println("Nie ma sali o takiej nazwie!");
                                 }
                                 break;
 
@@ -147,6 +149,7 @@ public class Main {
 
 
                                 customerService.addCustomer(name, surname);
+                                System.out.println("Dodano klienta.");
                                 break;
 
                             case 2:
