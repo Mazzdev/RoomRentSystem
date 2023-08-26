@@ -154,9 +154,11 @@ public class Main {
                             case 2:
                                 scanner.nextLine();
 
+
                                 System.out.println("\n--- USUWANIE KLIENTÓW ---");
                                 System.out.print("Podaj ID klienta:");
                                 id = scanner.nextInt();
+
 
                                 scanner.nextLine();
 
@@ -209,12 +211,14 @@ public class Main {
                             case 2:
                                 scanner.nextLine();
 
+
                                 System.out.println("\n--- REZERWACJA SALI ---");
                                 System.out.print("Podaj id klienta, który  rezerwuje salę: ");
                                 id = scanner.nextInt();
 
                                 scanner.nextLine();
                                 Customer clientRentingTheRoom = customerService.findCustomerById(id);
+
 
                                 System.out.print("\nPodaj nazwę rezerwowanej sali: ");
                                 roomName = scanner.nextLine();
